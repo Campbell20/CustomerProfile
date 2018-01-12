@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CustomerProfile.Controllers;
 using System.Web.Mvc;
+using CustomerProfile.Models;
 
 namespace CustomerProfile.tests
 {
@@ -9,8 +10,20 @@ namespace CustomerProfile.tests
     public class HomeControllerTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void About()
         {
+            HomeController controller = new HomeController();
+
+            CustomerData customerdata = new CustomerData
+            {
+                CustomerFirstName = "John",
+                CustomerLastName = "Campbell",
+                City = "San Antonio"
+            };
+
+            ViewResult result = controller.About(customerdata) as ViewResult;
+
+            Assert.AreEqual(true, result.ViewData["CustomerStatus"]);
         }
     }
 }

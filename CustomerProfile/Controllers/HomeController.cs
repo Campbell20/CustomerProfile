@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CustomerProfile.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,9 +14,27 @@ namespace CustomerProfile.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult About(CustomerData customerdata)
         {
             ViewBag.Message = "Your application description page.";
+
+            switch (customerdata.CustomerFirstName)
+            {
+                case "John":
+                    ViewData["CustomerStatus"] = true;
+                    break;
+            }
+
+            switch (customerdata.CustomerLastName)
+            {
+                case "Campbell":
+                    ViewData["CustomerStatus"] = true;
+                    break;
+                default:
+                    ViewData["CustomerStatus"] = false;
+                    break;
+            }
+            //ViewData["Hello"] = "Response Data";
 
             return View();
         }
