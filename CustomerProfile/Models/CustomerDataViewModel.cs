@@ -9,11 +9,12 @@ namespace CustomerProfile.Models
     public class CustomerDataViewModel
     {
         public CustomerData CustomerDatas { get; set; }
-        public CustomerImage CustomerImages { get; set; }
+        public Image Image { get; set; }
 
         //[Required, FileExtensions(Extensions = "jpg,gif,png",
         //    ErrorMessage = "Specify a file")]
-        //[Required]
+
+        [Required]
         public HttpPostedFileBase File { get; set; }
     }
 }

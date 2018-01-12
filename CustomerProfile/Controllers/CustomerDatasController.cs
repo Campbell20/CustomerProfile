@@ -79,9 +79,9 @@ namespace CustomerProfile.Controllers
                 case "State":
                     Results = Results.OrderByDescending(x => x.State);
                     break;
-                //default:
-                //    Results = Results.OrderByDescending(x => x.Id);
-                //    break;
+                default:
+                    Results = Results.OrderByDescending(x => x.Id);
+                    break;
 
             }
 
@@ -122,21 +122,18 @@ namespace CustomerProfile.Controllers
                         byte[] array = ms.GetBuffer();
                     }
 
-                    model.CustomerImages.ImageName = model.File.FileName;
-                    db.CustomerImages.Add(model.CustomerImages);
-                    db.SaveChanges();
-
+                    model.CustomerDatas.Image = new Image();
+                    model.CustomerDatas.Image.ImageName = model.File.FileName;
                 }
 
-                Create(model.CustomerDatas); //Private method that contains the signature matching the model type
-
-                //db.CustomerDatas.Add(model.CustomerDatas);
-                //db.SaveChanges();
+                db.CustomerDatas.Add(model.CustomerDatas);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             return View(model);
         }
+         
 
         // GET: CustomerDatas/Details/5
         public ActionResult Details(int? id)
@@ -164,32 +161,32 @@ namespace CustomerProfile.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        private ActionResult Create([Bind(Include = "Id,CustomerFirstName,CustomerLastName,Line1,Line2,City,State,Country,ZipCode")] CustomerData customerData)
-        {
-            if (ModelState.IsValid)
-            {
-                db.CustomerDatas.Add(customerData);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //private ActionResult Create([Bind(Include = "Id,CustomerFirstName,CustomerLastName,Line1,Line2,City,State,Country,ZipCode")] CustomerData customerData)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.CustomerDatas.Add(customerData);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(customerData);
-        }
+        //    return View(customerData);
+        //}
 
-        // GET: CustomerDatas/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CustomerData customerData = db.CustomerDatas.Find(id);
-            if (customerData == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customerData);
-        }
+        //// GET: CustomerDatas/Edit/5
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    CustomerData customerData = db.CustomerDatas.Find(id);
+        //    if (customerData == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(customerData);
+        //}
 
         // POST: CustomerDatas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

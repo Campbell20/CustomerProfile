@@ -15,6 +15,6 @@ namespace CustomerProfile.Context
         }
 
         public DbSet<CustomerData> CustomerDatas { get; set; }
-        public DbSet<CustomerImage> CustomerImages { get; set; }
+        public DbSet<Image> CustomerImages { get; set; }
     }
 }

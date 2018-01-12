@@ -61,7 +61,7 @@ namespace CustomerProfile.Models
         public int ImageId { get; set; }
 
         [ForeignKey("ImageId")]
-        public virtual CustomerImage CustomerImages { get; set; }
+        public virtual Image Image { get; set; }
 
     }
 }

@@ -3,7 +3,7 @@ namespace CustomerProfile.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init : DbMigration
+    public partial class FirstMig : DbMigration
     {
         public override void Up()
         {
@@ -23,11 +23,11 @@ namespace CustomerProfile.Migrations
                         ImageId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.CustomerImages", t => t.ImageId, cascadeDelete: true)
+                .ForeignKey("dbo.Images", t => t.ImageId, cascadeDelete: true)
                 .Index(t => t.ImageId);
             
             CreateTable(
-                "dbo.CustomerImages",
+                "dbo.Images",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -39,9 +39,9 @@ namespace CustomerProfile.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.CustomerDatas", "ImageId", "dbo.CustomerImages");
+            DropForeignKey("dbo.CustomerDatas", "ImageId", "dbo.Images");
             DropIndex("dbo.CustomerDatas", new[] { "ImageId" });
-            DropTable("dbo.CustomerImages");
+            DropTable("dbo.Images");
             DropTable("dbo.CustomerDatas");
         }
     }
