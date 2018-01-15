@@ -17,45 +17,32 @@ namespace CustomerProfile.Controllers
     {
         public ActionResult Index(CustomerData customerdata)
         {
-
-
-            //modify these variables to perform a unit test on the CustomerDatasController
-            
-            var firstName = customerdata.CustomerFirstName; //FirstName
-            var lastName = customerdata.CustomerLastName; //LastName
-            var line1Name = customerdata.Line1; //Line1
-            var line2Name = customerdata.Line2; //Line2
-            var cityName = customerdata.City; //CityName
-            var stateName = customerdata.State; //StateName
-            var countryName = customerdata.Country; //CountryName
-            var zipCodeInt = customerdata.ZipCode;
-            var idInt = customerdata.Id; //1234
-         
             var CS = "CustomerStatus";
 
-            string[] customerinfo = new string[]
+            var zipcodeCheck = customerdata.ZipCode;
+            var idCheck = customerdata.Id; //1234
+            string[] customerDataCheck = new string[]
             {
-                "FirstName",
-                "LastName",
-                "Line1",
-                "Line2",
-                "CityName",
-                "StateName",
-                "CountryName"
-
+               customerdata.CustomerFirstName,
+               customerdata.CustomerLastName,
+               customerdata.Line1,
+               customerdata.Line2,
+               customerdata.City,
+               customerdata.State,
+               customerdata.Country
             };
 
-
-            if (
-                customerinfo.Contains(firstName)
-                && customerinfo.Contains(lastName)
-                && customerinfo.Contains(line1Name)
-                && customerinfo.Contains(line2Name)
-                && customerinfo.Contains(cityName)
-                && customerinfo.Contains(stateName)
-                && customerinfo.Contains(countryName)
-                && zipCodeInt == 123456
-                && idInt == 1234
+            if 
+                (
+               customerDataCheck[0] == "FirstName"
+               && customerDataCheck[1] == "LastName"
+               && customerDataCheck[2] == "Line1"
+               && customerDataCheck[3] == "Line2"
+               && customerDataCheck[4] == "CityName"
+               && customerDataCheck[5] == "StateName"
+               && customerDataCheck[6] == "CountryName"
+               && zipcodeCheck == 123456
+               && idCheck == 1234
                 )
             {
                 ViewData[CS] = true;

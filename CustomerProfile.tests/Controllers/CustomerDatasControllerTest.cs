@@ -14,8 +14,10 @@ namespace CustomerProfile.tests.Controllers
         {
             var CS = "CustomerStatus";
 
+            //creates a new isntance of my controller that I'm testing
             CustomerDatasController controller = new CustomerDatasController();
 
+            //creates a new instance of customer profile database
             CustomerData customerdata = new CustomerData
             {
 
@@ -31,8 +33,10 @@ namespace CustomerProfile.tests.Controllers
                 Id = 1234 //1234
             };
 
+            //what is the result of the data when compared to my controller?
             ViewResult result = controller.Index(customerdata) as ViewResult;
 
+            //is the information equal? If so, bool true
             Assert.AreEqual(true, result.ViewData[CS]);
         }
     }
