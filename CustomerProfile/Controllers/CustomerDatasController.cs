@@ -15,6 +15,59 @@ namespace CustomerProfile.Controllers
 {
     public class CustomerDatasController : Controller
     {
+        public ActionResult Index(CustomerData customerdata)
+        {
+
+
+            //modify these variables to perform a unit test on the CustomerDatasController
+            
+            var firstName = customerdata.CustomerFirstName; //FirstName
+            var lastName = customerdata.CustomerLastName; //LastName
+            var line1Name = customerdata.Line1; //Line1
+            var line2Name = customerdata.Line2; //Line2
+            var cityName = customerdata.City; //CityName
+            var stateName = customerdata.State; //StateName
+            var countryName = customerdata.Country; //CountryName
+            var zipCodeInt = customerdata.ZipCode;
+            var idInt = customerdata.Id; //1234
+         
+            var CS = "CustomerStatus";
+
+            string[] customerinfo = new string[]
+            {
+                "FirstName",
+                "LastName",
+                "Line1",
+                "Line2",
+                "CityName",
+                "StateName",
+                "CountryName"
+
+            };
+
+
+            if (
+                customerinfo.Contains(firstName)
+                && customerinfo.Contains(lastName)
+                && customerinfo.Contains(line1Name)
+                && customerinfo.Contains(line2Name)
+                && customerinfo.Contains(cityName)
+                && customerinfo.Contains(stateName)
+                && customerinfo.Contains(countryName)
+                && zipCodeInt == 123456
+                && idInt == 1234
+                )
+            {
+                ViewData[CS] = true;
+            }
+            else
+            {
+                ViewData[CS] = false;
+            }
+
+            return View();
+        }
+        
         private CustomerDataContext db = new CustomerDataContext();
         #region Old Index
         //// GET: CustomerDatas
@@ -24,7 +77,7 @@ namespace CustomerProfile.Controllers
         //}
         #endregion
 
-
+      
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
 
