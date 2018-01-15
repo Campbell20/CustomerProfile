@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using CustomerProfile.Context;
 using CustomerProfile.Models;
 using PagedList;
+using System.Text;
 
 namespace CustomerProfile.Controllers
 {
@@ -18,10 +19,8 @@ namespace CustomerProfile.Controllers
         public ActionResult Index(CustomerData customerdata)
         {
             var CS = "CustomerStatus";
-
-            var zipcodeCheck = customerdata.ZipCode;
-            var idCheck = customerdata.Id; //1234
-            string[] customerDataCheck = new string[]
+            
+            object[] customerDataCheck = new object[]
             {
                customerdata.CustomerFirstName,
                customerdata.CustomerLastName,
@@ -29,20 +28,22 @@ namespace CustomerProfile.Controllers
                customerdata.Line2,
                customerdata.City,
                customerdata.State,
-               customerdata.Country
+               customerdata.Country,
+               customerdata.ZipCode,
+               customerdata.Id,
             };
 
             if 
                 (
-               customerDataCheck[0] == "FirstName"
-               && customerDataCheck[1] == "LastName"
-               && customerDataCheck[2] == "Line1"
-               && customerDataCheck[3] == "Line2"
-               && customerDataCheck[4] == "CityName"
-               && customerDataCheck[5] == "StateName"
-               && customerDataCheck[6] == "CountryName"
-               && zipcodeCheck == 123456
-               && idCheck == 1234
+               customerDataCheck[0].Equals("FirstName")
+               && customerDataCheck[1].Equals("LastName")
+               && customerDataCheck[2].Equals("Line1")
+               && customerDataCheck[3].Equals("Line2")
+               && customerDataCheck[4].Equals("CityName")
+               && customerDataCheck[5].Equals("StateName")
+               && customerDataCheck[6].Equals("CountryName")
+               && customerDataCheck[7].Equals(123456)
+               && customerDataCheck[8].Equals(1234)
                 )
             {
                 ViewData[CS] = true;
