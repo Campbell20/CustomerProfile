@@ -11,31 +11,57 @@ namespace CustomerProfile.Controllers
     {
         public ActionResult Index()
         {
+          
+            return View();
+        }
+
+
+        public ActionResult ImageIndex(Image image)
+        {
+            var CS = "CustomerStatus";
+            switch (image.ImageName)
+            {
+                case "abc123":
+                    ViewData[CS] = true;
+                    break;
+                default:
+                    ViewData[CS] = false;
+                    break;
+            }
             return View();
         }
 
         public ActionResult About(CustomerData customerdata)
         {
+            var cS = "CustomerStatus";
             ViewBag.Message = "Your application description page.";
 
             switch (customerdata.CustomerFirstName)
             {
                 case "John":
-                    ViewData["CustomerStatus"] = true;
+                    ViewData[cS] = true;
                     break;
             }
 
             switch (customerdata.CustomerLastName)
             {
                 case "Campbell":
-                    ViewData["CustomerStatus"] = true;
+                    ViewData[cS] = true;
                     break;
                 default:
-                    ViewData["CustomerStatus"] = false;
+                    ViewData[cS] = false;
                     break;
             }
             //ViewData["Hello"] = "Response Data";
 
+            if(customerdata.City == "San Antonio")
+            {
+                ViewData[cS] = true;
+            }
+            else
+            {
+                ViewData[cS] = false;
+            }
             return View();
         }
 

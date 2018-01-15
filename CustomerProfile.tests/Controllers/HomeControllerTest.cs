@@ -9,21 +9,24 @@ namespace CustomerProfile.tests
     [TestClass]
     public class HomeControllerTest
     {
+       
         [TestMethod]
         public void About()
         {
+            var cS = "CustomerStatus";
+
             HomeController controller = new HomeController();
 
             CustomerData customerdata = new CustomerData
             {
                 CustomerFirstName = "John",
                 CustomerLastName = "Campbell",
-                City = "San Antonio"
+                City = "San Antonio",
             };
 
             ViewResult result = controller.About(customerdata) as ViewResult;
 
-            Assert.AreEqual(true, result.ViewData["CustomerStatus"]);
+            Assert.AreEqual(true, result.ViewData[cS]);
         }
     }
 }
